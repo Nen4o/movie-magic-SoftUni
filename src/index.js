@@ -1,5 +1,6 @@
 const express = require('express');
 const hbs = require('express-handlebars');
+const path = require('path');
 
 const port = 5000;
 const app = express();
@@ -10,6 +11,8 @@ app.engine('hbs', hbs.engine({
 
 app.set('view engine', 'hbs');
 app.set('views', './src/views')
+
+app.use(express.static(path.join(__dirname, '/public')))
 
 
 app.get('/', (req, res) => {
