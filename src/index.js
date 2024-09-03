@@ -15,7 +15,7 @@ app.set('view engine', 'hbs');
 app.set('views', './src/views')
 
 app.use(express.static(path.join(__dirname, '/public')))
-
+app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
 app.listen(port, () => {
