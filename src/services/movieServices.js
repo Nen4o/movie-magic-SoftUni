@@ -24,3 +24,7 @@ exports.getOneMovie = (movieId) => {
     const movie = movies.find(x => x._id == movieId);
     return movie;
 }
+
+exports.findMovies = (query) =>{
+    return movies.filter(x => x.title === query.title || x.genre === query.genre || x.year === query.year)
+}
