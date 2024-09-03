@@ -19,3 +19,8 @@ exports.addMovie = (movie) => {
     movie['_id'] = movies[movies.length - 1]._id + 1;
     movies.push(movie);
 }
+
+exports.getOneMovie = (movieId) => {
+    const movie = movies.find(x => x._id == movieId);
+    return movie;
+}
