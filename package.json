@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.19.2",
     "express-handlebars": "^8.0.1",
+    "mogoose": "^0.0.1-security",
     "path": "^0.12.7"
   },
   "devDependencies": {
