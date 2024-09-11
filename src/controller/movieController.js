@@ -33,10 +33,13 @@ router.get('/search', (req, res) => {
     res.render('search');
 })
 
-router.post('/search', (req, res) => {
+router.post('/search', async (req, res) => {
     const query = req.body;
 
-    const movie = movieServices.findMovies(query)
+
+    const movie = await movieServices.findMovies(query).lean();
+
+    console.log(movie);
     res.render('search', { movie })
 
 })

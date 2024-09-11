@@ -26,13 +26,9 @@ exports.getOneMovie = (movieId) => {
 }
 
 exports.findMovies = (query) => {
-    return movies.filter(x => x.title === query.title || x.genre === query.genre || x.year === query.year)
+    return Movie.find({ $or: [{ title: query.title }, { genre: query.genre }, { year: query.year }] });
 }
 
 exports.updateMovieCast = (castId, movieId) => {
     return Movie.updateOne({ '_id': movieId }, { $push: { 'castsId': castId } });
-}
-
-exports.getCasts = () => {
-
 }

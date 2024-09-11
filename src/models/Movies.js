@@ -36,7 +36,7 @@ const movieSchema = new mongoose.Schema({
         match: /http/,
     },
     castsId: {
-        type: Array
+        type: Array,
     }
 })
 
