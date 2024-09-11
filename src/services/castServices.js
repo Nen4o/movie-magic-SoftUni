@@ -8,3 +8,11 @@ exports.getAll = () => {
     return Cast.find();
 }
 
+exports.findOne = (castId) => {
+    return Cast.findOne({ '_id': castId });
+}
+
+exports.findCastById = (castsIdArr) => {
+    return Cast.find({ '_id': { $in: castsIdArr } });
+}
+

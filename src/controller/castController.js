@@ -29,4 +29,17 @@ router.get('/movie/add-cast/:movieId', async (req, res) => {
     console.log(movieId);
 
 })
+
+router.post('/movie/add-cast/:movieId', async (req, res) => {
+    const movieId = req.params.movieId;
+    const cast = req.body;
+
+    try {
+        await movieServices.updateMovieCast(cast.cast, movieId);
+        res.redirect('/movie/details/' + movieId);
+    } catch (err) {
+        console.log(err);
+    }
+
+})
 module.exports = router;
