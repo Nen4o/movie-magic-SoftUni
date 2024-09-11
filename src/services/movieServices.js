@@ -22,8 +22,7 @@ exports.addMovie = (movie) => {
 }
 
 exports.getOneMovie = (movieId) => {
-    const movie = movies.find(x => x._id == movieId);
-    return movie;
+    return Movie.findOne({ '_id': movieId });
 }
 
 exports.findMovies = (query) => {

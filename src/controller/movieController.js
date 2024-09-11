@@ -15,12 +15,18 @@ router.post('/create', async (req, res) => {
     }
 })
 
-router.get('/movie/details/:movieId', (req, res) => {
+router.get('/movie/details/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
-    const movie = movieServices.getOneMovie(movieId);
-    movie.stars = '&#x2605;'.repeat(movie.rating);
+    try {
+        const movie = await movieServices.getOneMovie(movieId).lean();
+        console.log(movie);
+        movie.stars = '&#x2605;'.repeat(movie.rating);
+        res.render('details', { movie });
+    } catch (err) {
+        console.log(err);
+    }
 
-    res.render('details', { movie });
+
 })
 
 router.get('/search', (req, res) => {

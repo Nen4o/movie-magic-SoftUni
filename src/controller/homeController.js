@@ -4,8 +4,6 @@ const moviesServices = require('../services/movieServices');
 router.get('/', async (req, res) => {
     try {
         const movies = await moviesServices.getAll().lean();
-        console.log(movies);
-
         res.render('home', { movies });
     } catch (err) {
         console.log(err);
