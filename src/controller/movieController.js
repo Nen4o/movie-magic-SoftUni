@@ -5,9 +5,14 @@ router.get('/create', (req, res) => {
     res.render('create');
 })
 
-router.post('/create', (req, res) => {
-    movieServices.addMovie(req.body);
-    res.redirect('/')
+router.post('/create', async (req, res) => {
+    try {
+        await movieServices.addMovie(req.body);
+        res.redirect('/')
+    } catch (err) {
+        res.redirect('/create')
+        console.log(err);
+    }
 })
 
 router.get('/movie/details/:movieId', (req, res) => {

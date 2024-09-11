@@ -1,3 +1,5 @@
+const Movie = require('../models/Movies');
+
 let movies = [
     {
         _id: 1,
@@ -12,12 +14,11 @@ let movies = [
 ]
 
 exports.getAll = () => {
-    return movies.slice();
+    return Movie.find();
 }
 
 exports.addMovie = (movie) => {
-    movie['_id'] = movies[movies.length - 1]._id + 1;
-    movies.push(movie);
+    return Movie.create(movie);
 }
 
 exports.getOneMovie = (movieId) => {
@@ -25,6 +26,6 @@ exports.getOneMovie = (movieId) => {
     return movie;
 }
 
-exports.findMovies = (query) =>{
+exports.findMovies = (query) => {
     return movies.filter(x => x.title === query.title || x.genre === query.genre || x.year === query.year)
 }

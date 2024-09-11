@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('express-handlebars');
 const path = require('path');
+const mongoose = require('mongoose');
 
 const router = require('./router');
 
@@ -18,6 +19,12 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
-app.listen(port, () => {
-    console.log('Server is listening on port ' + port);
-})
+mongoose.connect('mongodb://localhost:27017/movie-magic')
+    .then(() => {
+        console.log('DB Connected');
+        app.listen(port, () => {
+            console.log('Server is listening on port ' + port);
+        })
+    }).catch((err) => {
+        console.log(err);
+    })
