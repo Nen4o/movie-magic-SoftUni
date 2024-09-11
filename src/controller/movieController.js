@@ -19,7 +19,6 @@ router.get('/movie/details/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
     try {
         const movie = await movieServices.getOneMovie(movieId).lean();
-        console.log(movie);
         movie.stars = '&#x2605;'.repeat(movie.rating);
         res.render('details', { movie });
     } catch (err) {

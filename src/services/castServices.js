@@ -4,3 +4,7 @@ exports.createCast = (castObj) => {
     return Cast.create(castObj);
 }
 
+exports.getAll = () => {
+    return Cast.find();
+}
+
