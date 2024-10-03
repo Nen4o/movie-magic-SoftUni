@@ -23,7 +23,7 @@ mongoose.connect('mongodb://localhost:27017/movie-magic')
     .then(() => {
         console.log('DB Connected');
         app.listen(port, () => {
-            console.log('Server is listening on port ' + port);
+            console.log('Server is listening on http://localhost:' + port);
         })
     }).catch((err) => {
         console.log(err);
