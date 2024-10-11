@@ -2,13 +2,24 @@ const router = require('express').Router();
 const movieServices = require('../services/movieServices');
 const castServices = require('../services/castServices');
 
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = require('../config/constants');
+
 router.get('/create', (req, res) => {
     res.render('create');
 })
 
 router.post('/create', async (req, res) => {
+
+    const token = req.cookies['auth'];
+
+    const userToken = jwt.verify(token, SECRET_KEY);
+
     try {
-        await movieServices.addMovie(req.body);
+        const movieData = req.body;
+        movieData.ownerId = userToken._id;
+
+        await movieServices.addMovie(movieData);
         res.redirect('/')
     } catch (err) {
         res.redirect('/create')

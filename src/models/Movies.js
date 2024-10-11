@@ -37,6 +37,9 @@ const movieSchema = new mongoose.Schema({
     },
     castsId: {
         type: Array,
+    },
+    ownerId: {
+        type: String,
     }
 })
 

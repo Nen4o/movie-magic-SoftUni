@@ -11,5 +11,4 @@ findUser = (data) => {
 module.exports = {
     createUser,
     findUser,
-
 }

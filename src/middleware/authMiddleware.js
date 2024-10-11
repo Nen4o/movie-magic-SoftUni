@@ -13,7 +13,6 @@ module.exports = (req, res, next) => {
     try {
         const decodedToken = jwt.verify(token, SECRET_KEY);
         res.locals.isAuthenticated = true;
-        console.log(decodedToken);
         next();
     } catch (err) {
         console.log(err);
