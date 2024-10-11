@@ -3,7 +3,8 @@ const authServices = require('../services/authServices');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = 'dsajjbYU2G3UGAo3UI6'
+const SECRET_KEY = require('../config/constants');
+
 
 router.get('/register', (req, res) => {
     res.render('auth/register')
@@ -42,7 +43,6 @@ router.post('/login', async (req, res) => {
 
     const userToken = jwt.sign(payload, SECRET_KEY, { expiresIn: '2h' });
     res.cookie('auth', userToken);
-
     res.redirect('/');
 })
 
