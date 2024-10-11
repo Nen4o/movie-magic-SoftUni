@@ -11,4 +11,8 @@ router.post('/register', (req, res) => {
     res.redirect('/login');
 })
 
+router.get('/login', (req, res) => {
+    res.render('auth/login');
+})
+
 module.exports = router;
