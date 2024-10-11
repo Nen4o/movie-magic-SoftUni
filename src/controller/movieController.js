@@ -43,6 +43,28 @@ router.get('/movie/details/:movieId', async (req, res) => {
     }
 })
 
+router.get('/movie/edit/:movieId', async (req, res) => {
+    const movieId = req.params.movieId;
+    try {
+        const movie = await movieServices.getOneMovie(movieId).lean();
+
+        res.render('edit', { movie });
+    } catch (err) {
+
+    }
+})
+
+router.post('/movie/edit/:movieId', async (req, res) => {
+    const movieId = req.params.movieId;
+    const movieData = req.body;
+    try {
+        await movieServices.updateMovieById(movieId, movieData);
+        res.redirect(`/movie/details/${movieId}`)
+    } catch (err) {
+        console.log(err);
+    }
+})
+
 router.get('/search', (req, res) => {
     res.render('search');
 })

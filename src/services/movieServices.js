@@ -25,6 +25,10 @@ exports.getOneMovie = (movieId) => {
     return Movie.findOne({ '_id': movieId });
 }
 
+exports.updateMovieById = (movieId, newData) => {
+    return Movie.findOneAndUpdate({ _id: movieId }, newData);
+}
+
 exports.findMovies = (query) => {
     return Movie.find({ $or: [{ title: query.title }, { genre: query.genre }, { year: query.year }] });
 }

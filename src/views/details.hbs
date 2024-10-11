@@ -20,10 +20,10 @@
                 <p class="disc">Description: {{movie.description}}</p>
             </div>
             {{#if isOwner}}
-            <div class="details-btn">
                 <a href="/movie/add-cast/{{movie._id}}" class="details" style="padding-top: 0;">Add Cast</a>
-                <button id="edit-button">Edit</button>
-                <button id="delete-button">Delete</button>
+            <div class="details-btn">
+                <a href="/movie/edit/{{movie._id}}" id="edit-button">Edit</a>
+                <a href="/movie/delete/{{movie._id}}" id="delete-button">Delete</a>
             </div>
             {{/if}}
 
