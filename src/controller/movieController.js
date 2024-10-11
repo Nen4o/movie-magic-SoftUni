@@ -12,13 +12,11 @@ router.get('/create', (req, res) => {
 router.post('/create', async (req, res) => {
 
     const token = req.cookies['auth'];
-
     const userToken = jwt.verify(token, SECRET_KEY);
 
     try {
         const movieData = req.body;
         movieData.ownerId = userToken._id;
-
         await movieServices.addMovie(movieData);
         res.redirect('/')
     } catch (err) {
@@ -28,13 +26,18 @@ router.post('/create', async (req, res) => {
 })
 
 router.get('/movie/details/:movieId', async (req, res) => {
+    const token = req.cookies['auth'];
+    const userToken = jwt.verify(token, SECRET_KEY);
+
     const movieId = req.params.movieId;
     try {
         const movie = await movieServices.getOneMovie(movieId).lean();
         const casts = await castServices.findCastById(movie.castsId).lean();
 
+        const isOwner = movie.ownerId == userToken._id;
+
         movie.stars = '&#x2605;'.repeat(movie.rating);
-        res.render('details', { movie, casts });
+        res.render('details', { movie, casts, isOwner });
     } catch (err) {
         console.log(err);
     }
