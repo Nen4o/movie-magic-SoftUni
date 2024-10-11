@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, SECRET_KEY);
         res.locals.isAuthenticated = true;
         res.locals.userId = decodedToken._id;
-        next();
+        return next();
     } catch (err) {
         console.log(err);
         res.clearCookie('auth');
