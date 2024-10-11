@@ -65,6 +65,17 @@ router.post('/movie/edit/:movieId', async (req, res) => {
     }
 })
 
+router.get('/movie/delete/:movieId', async (req, res) => {
+    const movieId = req.params.movieId;
+
+    try {
+        await movieServices.deleteMovieById(movieId);
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+    }
+})
+
 router.get('/search', (req, res) => {
     res.render('search');
 })
