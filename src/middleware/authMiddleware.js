@@ -15,8 +15,10 @@ module.exports = (req, res, next) => {
         res.locals.isAuthenticated = true;
         console.log(decodedToken);
         next();
-    } catch (error) {
+    } catch (err) {
         console.log(err);
+        res.clearCookie('auth');
+        res.redirect('/login');
         return next();
     }
 }
